@@ -1,0 +1,395 @@
+﻿body {
+    margin: 0;
+    font-family: arial, sans-serif;
+    background-color: #ffffff;
+}
+
+/* header */
+
+.container {
+    width: 100%;
+    position: relative;
+}
+
+.bg-1 {
+    background-color: #f4f4f4;
+    padding: 5em 0em;
+}
+
+
+.header {
+    background-color: #40396E;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    float: left;
+}
+
+    .header h1 {
+        color: #fff;
+    }
+
+
+    .header ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        background-color: #fff;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+    }
+
+    .header li a {
+        display: block;
+        padding: 0.7em;
+        text-decoration: none;
+        transition: .3s;
+        color: #f7f7f7;
+    }
+
+        .header li a:hover,
+        .header .btn-mobile:hover {
+            background-color: #40396E;
+            color: #fff;
+        }
+
+    .header .logo {
+        display: block;
+        float: left;
+    }
+
+
+    .header .nav {
+        clear: both;
+        max-height: 0;
+        transition: max-height .2s ease-out;
+        background-color: #A3A3CD;
+        border: solid;
+        border-color: #fff;
+        border-radius: 15px;
+        padding: 0px 0px;
+        text-align: center;
+    }
+
+    /* menu icon */
+
+    .header .mobile-icon {
+        cursor: pointer;
+        display: inline-block;
+        float: right;
+        padding: 28px 20px;
+        position: relative;
+        user-select: none;
+    }
+
+        .header .mobile-icon .hamburguer {
+            background: #fff;
+            display: block;
+            height: 2px;
+            position: relative;
+            transition: background .2s ease-out;
+            width: 18px;
+        }
+
+            .header .mobile-icon .hamburguer:before,
+            .header .mobile-icon .hamburguer:after {
+                background: #fff;
+                content: '';
+                display: block;
+                height: 100%;
+                position: absolute;
+                transition: all .2s ease-out;
+                width: 100%;
+            }
+
+            .header .mobile-icon .hamburguer:before {
+                top: 5px;
+            }
+
+            .header .mobile-icon .hamburguer:after {
+                top: -5px;
+            }
+
+    /* menu btn */
+
+    .header .mobile-btn {
+        display: none;
+    }
+
+        .header .mobile-btn:checked ~ .nav {
+            max-height: 240px;
+        }
+
+        .header .mobile-btn:checked ~ .mobile-icon .hamburguer {
+            background: transparent;
+        }
+
+            .header .mobile-btn:checked ~ .mobile-icon .hamburguer:before {
+                transform: rotate(-45deg);
+            }
+
+            .header .mobile-btn:checked ~ .mobile-icon .hamburguer:after {
+                transform: rotate(45deg);
+            }
+
+        .header .mobile-btn:checked ~ .mobile-icon:not(.steps) .hamburguer:before,
+        .header .mobile-btn:checked ~ .mobile-icon:not(.steps) .hamburguer:after {
+            top: 0;
+        }
+
+
+.content {
+    width: 100%;
+}
+
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+
+    header {
+        text-align: center;
+        align-items: center;
+    }
+
+    .header div a {
+        text-align: center;
+        align-items: center;
+    }
+
+    .ul nav {
+        text-align: center;
+        align-items: center;
+    }
+
+    .header li {
+        float: left;
+    }
+
+        .header li a {
+            padding: 15px 30px;
+            margin-top: 0px;
+            border-radius: 6px;
+        }
+
+    .header .nav {
+        clear: none;
+        float: right;
+        max-height: none;
+        text-align: center;
+        margin-right: 20%;
+        margin-left: 20%;
+    }
+
+    .header .mobile-icon {
+        display: none;
+    }
+
+    .header li a {
+        transition: .3s;
+        border-bottom: 0;
+    }
+}
+
+/*Footer*/
+
+.footer {
+    background-color: #40396E;
+    width: 100%;
+    height: 100%;
+    float: left;
+    font-size: 18px;
+    padding: 50px 10px 50px 10px;
+    top: 100px;
+}
+
+    .footer .left {
+        width: 100%;
+        float: left;
+        border-bottom: 1px #222424 solid;
+        border-right: 0;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+
+    .footer .title-footer {
+        color: #fff;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: initial;
+        font-size: 26px;
+        width: 100%;
+        float: left;
+        margin-bottom: 15px;
+    }
+
+        .footer .title-footer span {
+            color: #A3A3CD;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: bold;
+        }
+
+    /* Footer links */
+    .footer .links {
+        width: 100%;
+        float: left;
+        color: #fff;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+        .footer .links a {
+            display: block;
+            line-height: 33px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+            .footer .links a:hover {
+                color: #A3A3CD;
+            }
+
+    .footer .Copyright {
+        font-family: 'DM Sans', sans-serif;
+        color: #fff;
+        font-size: 14px;
+        font-weight: normal;
+        margin-bottom: 10px;
+    }
+
+
+    /*Right*/
+    .footer .right {
+        width: 100%;
+        float: left;
+    }
+
+        .footer .right p {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: initial;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 30px;
+            color: #fff;
+        }
+
+    /*formulario*/
+    .footer form {
+        width: 100%;
+        float: left;
+    }
+
+        .footer form input,
+        .footer form textarea {
+            display: block;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #fff;
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
+            border: none;
+            resize: none;
+            outline: none;
+            font: inherit;
+            font-size: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: normal;
+            color: #000000;
+            width: 100%;
+            padding: 18px;
+        }
+
+    .footer ::-webkit-input-placeholder {
+        color: #5c666b;
+    }
+
+    .footer ::-moz-placeholder {
+        color: #5c666b;
+        opacity: 1;
+    }
+
+    .footer :-ms-input-placeholder {
+        color: #5c666b;
+    }
+
+    .footer form input {
+        width: 100%;
+        height: 55px;
+        float: left;
+        margin-bottom: 15px;
+    }
+
+    .footer form textarea {
+        height: 100px;
+        margin-bottom: 20px;
+    }
+
+    .footer form .btn {
+        border-radius: 3px;
+        background-color: #1f2022;
+        color: #ffffff;
+        border: 0;
+        padding: 15px 50px;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: bold;
+        float: left;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .footer form .btn:hover {
+            background-color: #A3A3CD;
+            color: black;
+        }
+
+/*Responsive*/
+@media (min-width: 1280px) {
+    .footer {
+        padding: 100px 50px 50px 100px;
+    }
+
+        .footer .Copyright {
+            font-size: 16px;
+        }
+
+        .footer form input,
+        .footer form textarea {
+            width: 100%;
+            float: left;
+        }
+
+        .footer form button {
+            padding: 10px 35px;
+        }
+}
+
+@media (min-width: 768px) {
+
+    .footer .left {
+        width: 48%;
+        border-bottom: 0;
+    }
+
+    .footer .right {
+        width: 48%;
+        padding-left: 4%;
+        border-left: 1px #222424 solid;
+    }
+
+    .footer form {
+        margin-top: 30px;
+    }
+
+    .footer form {
+        display: block;
+    }
+
+        .footer form button {
+            float: none;
+        }
+}

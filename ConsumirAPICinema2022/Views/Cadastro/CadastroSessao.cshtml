@@ -1,0 +1,664 @@
+﻿@{
+    Layout = null;
+}
+
+
+<style>
+
+    #rodape {
+        grid-area: rodape;
+        display: flex;
+        justify-content: center;
+        /* main axes alinha com a linha */
+        align-items: center;
+        /* cross axes alinha com a coluna */
+        font-size: 1.2rem;
+        padding-right: 20px;
+        background-color: lightyellow;
+        text-align: center;
+    }
+
+    #principal {
+        grid-area: principal;
+        height: calc(100vh - 180px);
+        background-color: transparent;
+        padding: 20px;
+        /* define que conteúdo não cole em momento algum em bordas ou afins */
+        padding-bottom: 10px;
+    }
+
+    #conteudo {
+        position: relative;
+        height: 100%;
+        overflow-y: scroll;
+        /* rolagem apenas no conteudo e não na page inteira */
+        background-color: white;
+        padding: 20px;
+        padding-bottom: 10px;
+    }
+
+    #body {
+        height: 100vh;
+        margin: 0px;
+        display: grid;
+        grid-template-rows: 120px 1fr 60px;
+        /* define ordem cronológica da page e suas características */
+        grid-template-columns: 1fr;
+        grid-template-areas: "cabecalho "
+            "principal "
+            "rodape ";
+    }
+
+    .footer {
+        background-color: #40396E;
+        width: 100%;
+        height: 20%;
+        float: left;
+        font-size: 18px;
+        padding: 50px 10px 50px 10px;
+    }
+
+        .footer .left {
+            width: 100%;
+            float: left;
+            border-bottom: 1px #222424 solid;
+            border-right: 0;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+
+        .footer .title-footer {
+            color: #ffffff;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: initial;
+            font-size: 26px;
+            width: 100%;
+            float: left;
+            margin-bottom: 15px;
+        }
+
+            .footer .title-footer span {
+                color: #A3A3CD;
+                font-family: 'DM Sans', sans-serif;
+                font-weight: bold;
+            }
+
+        /* Footer links */
+        .footer .links {
+            width: 100%;
+            float: left;
+            color: #ffffff;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+            .footer .links a {
+                display: block;
+                line-height: 33px;
+                text-decoration: none;
+                color: #fff;
+                font-family: 'DM Sans', sans-serif;
+                font-size: 16px;
+                transition: 0.3s;
+            }
+
+                .footer .links a:hover {
+                    color: #A3A3CD;
+                }
+
+        .footer .Copyright {
+            font-family: 'DM Sans', sans-serif;
+            color: #8f9296;
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        /*Rede Sociais*/
+        .footer .footer-icons {
+            width: 100%;
+            float: left;
+            margin-bottom: 20px;
+        }
+
+            .footer .footer-icons a {
+                display: inline-block;
+                width: 35px;
+                height: 35px;
+                cursor: pointer;
+                background-color: #33383b;
+                border-radius: 50px;
+                font-family: 'DM Sans', sans-serif;
+                font-size: 20px;
+                color: #ffffff;
+                text-align: center;
+                line-height: 35px;
+                margin-bottom: 5px;
+                transition: 0.3s;
+            }
+
+                .footer .footer-icons a:hover {
+                    background-color: #A3A3CD;
+                }
+
+        /*Right*/
+        .footer .right {
+            width: 100%;
+            float: left;
+        }
+
+            .footer .right p {
+                font-family: 'DM Sans', sans-serif;
+                font-weight: initial;
+                display: inline-block;
+                vertical-align: top;
+                font-size: 30px;
+                color: #ffffff;
+            }
+
+        /*formulario*/
+        .footer form {
+            width: 0%;
+            float: left;
+        }
+
+            .footer form input,
+            .footer form textarea {
+                display: block;
+                border-radius: 3px;
+                box-sizing: border-box;
+                background-color: #1f2022;
+                box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
+                border: none;
+                resize: none;
+                outline: none;
+                font: inherit;
+                font-size: 14px;
+                font-family: 'DM Sans', sans-serif;
+                font-weight: normal;
+                color: #d1d2d2;
+                width: 100%;
+                padding: 18px;
+            }
+
+        .footer ::-webkit-input-placeholder {
+            color: #5c666b;
+        }
+
+        .footer ::-moz-placeholder {
+            color: #5c666b;
+            opacity: 1;
+        }
+
+        .footer :-ms-input-placeholder {
+            color: #5c666b;
+        }
+
+        .footer form input {
+            width: 100%;
+            height: 55px;
+            float: left;
+            margin-bottom: 15px;
+        }
+
+        .footer form textarea {
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .footer form .btn {
+            border-radius: 3px;
+            background-color: #1f2022;
+            color: #ffffff;
+            border: 0;
+            padding: 15px 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: bold;
+            float: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .footer form .btn:hover {
+                background-color: #A3A3CD;
+            }
+
+</style>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" type="image/x-icon" href="~/iconHarry.png" sizes="32x32" />
+    <title>@ViewData["Title"] - CinEXame</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/fonts-icones.css" />
+</head>
+<body>
+    <header class="header">
+
+        <div class="content" style="background-color: #40396E">
+            <div class="col-12 col-xl-6" style="text-align:center; background-color: #40396E">
+                <img src="~/imagens/rick.svg" title="CinEXame" />
+                <h1 style="color:white">CinEXame</h1>
+            </div>
+            <a class="nav-link btn btn-dark" href="../Login/LoginFuncionario" style="margin-left: 5px">Logoff</a>
+
+        </div><!--content-->
+
+    </header>
+    <br />
+    <div class="text-center">
+        <h1 class="display-3">Cadastro: </h1>
+    </div>
+    <br />
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link btn btn-info" style="margin-right:5px; color:white" href="../Cadastro/CadastroEmpresa">Empresa</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-info" href="../Cadastro/CadastroFilme">Filme</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-info" href="../Cadastro/CadastroPoltrona" style="margin-left: 5px">Poltrona</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-info" href="../Cadastro/CadastroSexo" style="margin-left: 5px">Sexo</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-info" href="../Cadastro/CadastroSala" style="margin-left: 5px">Sala</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-info" href="../Cadastro/CadastroPessoa" style="margin-left: 5px">Pessoa</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-info" href="../Cadastro/CadastroFuncionario" style="margin-left: 5px">Funcionário</a>
+        </li>
+    </ul>
+
+    <main id="principal">
+        <div id="conteudo">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="display-3">Sessão</h2>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12" style="text-align:left">
+                        <button id="btnInserir" class="btn btn-info">NOVO</button>
+                    </div>
+                </div>
+                <br />
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div id="divLista">
+                            <table id="tbSessao" class="table table-bordered">
+                                <thead class="">
+                                    <tr>
+                                        <th class="border border-dark text-center" style="background-color: #A3A3CD; color:white">
+                                            DATA/HORÁRIO
+                                        </th>
+                                        <th class="border border-dark text-center" style="background-color: #A3A3CD; color:white">
+                                            ATIVO
+                                        </th>
+                                        <th class="border border-dark text-center" style="background-color: #A3A3CD; color:white">
+                                            SALA
+                                        </th>
+                                        <th class="border border-dark text-center" style="background-color: #A3A3CD; color:white">
+                                            AÇÕES
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="divCadastro" class="esconder">
+                            <form id="formulario" method="dialog" class="needs-validation" novalidate>
+                                <div class="form-row">
+                                    <div class="col col-lg-12 col-sm-12 col-md-12">
+                                        <input id="txtCodigo" type="hidden" />
+                                    </div>
+
+                                    <div class="col-5">
+                                        <label for="txtdata">Data/Horário:</label>
+                                        <input id="txtHorario" type="datetime" oninput="mascara(this, 'data')" class="form-control" maxlength="19" minlength="19" placeholder="Horário/Data" required />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="cdSala">Sala:</label>
+                                        <select id="cdSala" class="form-control" required>
+                                            <option>Selecione</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="col-7 text-center">
+                                    <button id="btnSalvar" class="btn btn-primary" style="color: white" type="submit">SALVAR</button>
+                                </div>
+
+                            </form>
+                        </div>
+                        <br /><br /><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="center">
+            <h4 class="title-footer">Projeto <span>CinEXame</span></h4>
+            <p class="Copyright">Copyright &copy; 2022 - CinEXame.</p>
+        </div><!--Left-->
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="@(Url.Content("https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"))" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+</body>
+
+<style>
+    .esconder {
+        display: none;
+    }
+</style>
+<script>
+    var url = 'https://localhost:44383/api/';
+    var token = sessionStorage.getItem("token");
+    function listarSessao() {
+        $.ajax({
+            type: "GET",
+            url: url + "Sessao/listar",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(jsonResult) {
+
+                if (jsonResult.status) {
+
+                    var lista = jsonResult.resultado;
+                    console.log(lista);
+                    var botaoEditar = "";
+                    var botaoAtivarInativar = "";
+                    $('#tbSessao')
+                        .find('tbody')
+                        .empty();
+
+                    $.each(lista, function(index, value) { //percorre a lista para jogar na table
+
+                        botaoEditar = '<button class="btn btn-warning" onclick="editarSessao(' + value.id + ')">Editar</button>';
+                        botaoAtivarInativar = '<button class="btn btn-danger" onclick="ativarInativar(' + value.id + ')">Ativar/Desativar</button>';
+                        if (value.ativo == true) {
+                            value.ativo = "Sim"
+                        } else {
+                            value.ativo = "Não"
+                        }
+                        $('#tbSessao')
+                            .find('tbody')
+                            .append('<tr>')
+                            .append($('<td class="border border-info text-center">').append(value.horario))
+                            .append($('<td class="border border-info text-center">').append(value.ativo))
+                            .append($('<td class="border border-info text-center">').append(value.nomeSala))
+                            .append($('<td class="border border-info text-center">').append(botaoEditar + " " + botaoAtivarInativar));
+
+                    });
+
+                }
+            },
+            failure: function(response) {
+                alert("Erro ao carregar os dados: " + response);
+            }
+        });
+
+    }
+
+    function adicionarSessao() {
+        $('#divCadastro').removeClass('esconder');
+        $('#txtCodigo').val('0');
+        $('#txtHorario').val('');
+        $('#cdSala').val('Selecione');
+    }
+
+    function salvar() {
+
+        var id = $('#txtCodigo').val();
+        var data = $('#txtHorario').val();
+        if (id == '0' && data != '') {
+
+            inserir();
+
+        }
+        else {
+
+            alterar();
+
+        }
+
+    }
+
+    function mascara(i, t) {
+
+        var v = i.value;
+
+        if (isNaN(v[v.length - 1])) {
+            i.value = v.substring(0, v.length - 1);
+            return;
+        }
+
+        if (t == "data") { //2022-09-23T00:00:00
+            i.setAttribute("maxlength", "19");
+            if (v.length == 4 || v.length == 7) i.value += "-";
+            if (v.length == 10) i.value += "T";
+            if (v.length == 13 || v.length == 16) i.value += ":";
+        }
+
+
+    }
+
+    function inserir() {
+
+        var id = $('#txtCodigo').val();
+        var horario = $('#txtHorario').val();
+        var sala = $('#cdSala').val();
+        if (id == '0' && horario != '' && sala != 'Selecione') {
+
+            var obj = {
+                Id: parseInt(id),
+                Data: horario,
+                Horario: horario,
+                Ativo: true,
+                IdSala: parseInt(sala)
+            };
+            console.log(obj);
+        } else if (sala == 'Selecione') {
+            alert("Selecione uma Sala!");
+        } else if (sala == 'Selecione' && horario == '') {
+            alert("Selecione uma sala e informe um horário/data!!");
+        } else {
+            alert("Preencha todos os campos");
+        };
+
+        $.ajax({
+            type: "PUT",
+            url: url + 'Sessao/salvar',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            data: JSON.stringify(obj),
+            success: function(jsonResult) {
+
+                console.log('metodo post: ', jsonResult);
+
+                if (jsonResult.status) {
+
+                    listarSessao();
+
+                }
+                else {
+                    alert("Informe uma data e horário!");
+                }
+
+            },
+            failure: function(response) {
+                alert("Erro ao carregar os dados: " + response);
+            }
+        });
+
+    }
+
+    function carregarSala() {
+        $.ajax({
+            type: "GET",
+            url: url + 'Sala/listar',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(jsonResult) {
+
+                if (jsonResult.status) {
+
+                    var lista = jsonResult.resultado;
+
+                    $.each(lista, function(index, obj) {
+                        if (obj.ativo) {
+                            $('#cdSala')
+                                .append($('<option>', {
+                                    text: obj.nome,
+                                    value: obj.id
+                                }));
+                        }
+
+                    });
+
+                }
+
+            },
+            failure: function(response) {
+                alert("Erro ao carregar os dados: " + response);
+            }
+        });
+    }
+
+    function editarSessao(id) {
+
+        $.ajax({
+            type: "GET",
+            url: url + 'Sessao/recuperar?id=' + id,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(jsonResult) {
+
+                if (jsonResult.status) {
+
+                    console.log(jsonResult);
+
+                    $('#divCadastro').removeClass('esconder');
+
+                    var obj = jsonResult.resultado;
+
+                    $('#txtCodigo').val(obj.id);
+                    $('#txtHorario').val(obj.horario);
+                    $('#cdSala').val(obj.idSala);
+
+                }
+            },
+            failure: function(response) {
+                alert("Erro ao carregar os dados: " + response);
+            }
+        });
+
+    }
+
+    function alterar() {
+
+        var id = $('#txtCodigo').val();
+        var horario = $('#txtHorario').val();
+        var sala = $('#cdSala').val();
+        if (id != '0' && horario != '' && sala != 'Selecione') {
+
+            var obj = {
+                Id: parseInt(id),
+                Data: horario,
+                Horario: horario,
+                Ativo: true,
+                IdSala: parseInt(sala)
+            };
+        } else if (sala == 'Selecione') {
+            alert("Selecione uma Sala!");
+        } else if (sala == 'Selecione' && horario == '') {
+            alert("Selecione uma sala e informe um horário/data!!");
+        } else {
+            alert("Preencha todos os campos");
+        };
+
+        $.ajax({
+            type: "POST",
+            url: url + 'Sessao/alterar',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            data: JSON.stringify(obj),
+            success: function(jsonResult) {
+
+                console.log('metodo post: ', jsonResult);
+
+                if (jsonResult.status) {
+                    $('#divCadastro').addClass('esconder');
+                    listarSessao();
+
+                }
+
+            },
+            failure: function(response) {
+                alert("Erro ao carregar os dados: " + response);
+            }
+        });
+
+    }
+
+    function ativarInativar(id) {
+
+
+        $.ajax({
+            type: "POST",
+            url: url + 'Sessao/alterarStatus?id=' + id,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            success: function(jsonResult) {
+
+                if (jsonResult.status) {
+
+                    listarSessao();
+
+                }
+                else {
+
+                    alert(jsonResult.Mensagem);
+
+                }
+            },
+            failure: function(response) {
+                alert("Erro ao carregar os dados: " + response);
+            }
+        });
+
+    }
+
+    $(function() {
+        listarSessao();
+        carregarSala();
+
+        $('#btnInserir').click(function() { adicionarSessao(); });
+
+        $('#btnSalvar').click(function() { salvar(); });
+    });
+</script>

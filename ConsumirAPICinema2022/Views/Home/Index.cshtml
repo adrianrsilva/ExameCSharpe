@@ -1,0 +1,288 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="~/css/Site/boot.css">
+    <link rel="stylesheet" type="text/css" href="~/css/Site/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/css/Site/icofont.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/Site/style.css">
+    <link rel="shortcut icon" href="~/iconHarry.png" type="image/ico" />
+    <title>CinEXame - Página Inicial</title>
+
+</head>
+
+<body>
+
+    <header class="main_header container" style="background-color:#40396E">
+
+        <div class="content" style="background-color:#40396E">
+
+            <div class="main_header_logo">
+                <a asp-area="" asp-controller="Home" asp-action="Index" title="CinEXame"><img src="~/imagens/rick.svg" alt="CinEXame" title="CinEXame" /></a>
+            </div>
+
+            <div class="icofont-navigation-menu mobile_action"></div>
+
+            <ul class="main_header_nav" id="top">
+
+                <li class="main_header_nav_item"><a href="#inicio" class="scrollSuave menuAtivo" title="Início" style="background-color:#A3A3CD; color:white"> Início</a></li>
+                <li class="main_header_nav_item"><a href="#cardapio" class="scrollSuave" title="Destaques" style="color:#A3A3CD; background-color:#40396E"> Em Cartaz</a></li>
+                <li class="main_header_nav_item"><a href="#lancamentos" class="scrollSuave" title="Lançamentos" style="color:#A3A3CD;background-color:#40396E">Lançamentos </a></li>
+                <li class="main_header_nav_item esconder" id="btnLogin"></li>
+                <li class="main_header_nav_item esconder" id="btnUsuario"></li>
+                <li class="main_header_nav_item esconder" id="btnPerfil"></li>
+                <li class="main_header_nav_item esconder" id="btnLogoff"></li>
+
+
+
+            </ul>
+
+            <div class="clear"></div>
+
+        </div>
+
+    </header>
+
+    <main class="main_content container">
+
+        <section id="inicio" class="section-chamada container">
+
+            <div class="content">
+
+                <article class="topoPag">
+                    <div class="mascara">
+
+                        <div class="centraliza">
+                        </div>
+
+                        <img src="~/imagens/jon.jpg" alt="Cinema" title="Cinema" class="img-fluid" width="20%" />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </article>
+
+                <div class="clear"></div>
+            </div>
+            <br />
+        </section><!--Fecha Section Chamada-->
+
+        <section id="cardapio" class="section-cardapio container">
+
+            <div class="content" id="filmes">
+
+                <h1 class="title center preto"><i class="icofont-power"></i> Em Cartaz</h1>
+                <br />
+
+
+                <div class="clear"></div>
+            </div>
+
+        </section><!--Fecha Section Sobre-->
+
+        <section id="cardapio" class="section-cardapio container">
+
+            <div class="content" id="lancamentos">
+
+                <h1 class="title center preto" style="background-color:#40396E; color:white"><i class="icofont-fire"></i> Lançamentos</h1>
+
+
+
+                <div class="clear"></div>
+            </div>
+
+        </section><!--Fecha Section Sobre-->
+
+
+    </main>
+
+    <footer class="main_footer container" style="background-color:#40396E">
+
+        <div class="main_footer_copy">
+            <div class="content">
+                <p class="t-copy-footer" style="color:white"> <b style="color:white">Copyright © Projeto CinEXame</b> - 2022, Todos os Direitos Reservados.</p>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="~/js/Site/jquery.js"></script>
+    <script src="~/js/Site/scripts.js"></script>
+    <script src="~/js/Site/jquery.magnific-popup.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="@(Url.Content("https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"))" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+</body>
+</html>
+
+
+<style>
+    .esconder {
+        display: none;
+    }
+</style>
+
+
+<script>
+
+    var url = 'https://localhost:44383/api/';
+    var urlImagem = 'https://localhost:44383/api/Filme/obterimagem?arquivo=';
+    var imagemSelecionada = '';
+
+    function carregarImagem() {
+        $('#imgProduto').attr('src', urlImagem + imagemSelecionada);
+    }
+
+    function listarFilme() {
+
+        $.ajax({
+            type: "GET",
+            url: url + "Filme/listar",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(jsonResult) {
+
+                if (jsonResult.status) {
+
+                    var lista = jsonResult.resultado;
+                    console.log(lista);
+                    $('#filmes')
+                        .empty();
+
+                    $.each(lista, function(index, value) {
+
+
+                        imagemFilme = '<article class="hover_cardapio"><a href="https://localhost:44345/Home/Ingresso?id=' + value.id + '" class="appTitulo" title="Filme 1">Comprar Ingresso</a><div class="hoverMascara"><div class="hover_cardapio_hover" style="background-color:transparent"></div><img class="appFoto" src="' + urlImagem + value.imagem + '"></div><div class="descricao" ><h3 style="color:#A3A3CD">' + value.nome + '</h3><p>' + value.descricao + '</p><p>Valor Ingresso:</p><p>R$' + value.valorIngresso + '</p></div></article>';
+
+                        $('#filmes')
+                            .append($(imagemFilme));
+
+
+
+
+
+                    });
+
+                }
+
+                //console.log(jsonResult);
+            },
+            failure: function(response) {
+                alert("Erro ao carregar os dados: " + response);
+            }
+        });
+
+    }
+
+    function listarLancamentos() {
+
+        $.ajax({
+            type: "GET",
+            url: url + "Filme/Lancamento",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(jsonResult) {
+
+                if (jsonResult.status) {
+
+                    var lista = jsonResult.resultado;
+
+                    $('#filmes')
+                        .empty();
+
+                    $.each(lista, function(index, value) {
+
+
+                        imagemFilme = '<article class="hover_cardapio"><a href="https://localhost:44345/Home/Ingresso?id=' + value.id + '" class="appTitulo" title="Filme 1">Comprar Ingresso</a><div class="hoverMascara"><div class="hover_cardapio_hover" style="background-color:transparent"></div><img class="appFoto" src="' + urlImagem + value.imagem + '"></div><div class="descricao" ><h3 style="color:#A3A3CD">' + value.nome + '</h3><p>' + value.descricao + '</p><p>Valor Ingresso:</p><p>R$' + value.valorIngresso + '</p></div></article>';
+
+                        $('#lancamentos')
+                            .append($(imagemFilme));
+
+
+
+                    });
+
+                }
+
+                //console.log(jsonResult);
+            },
+            failure: function(response) {
+                alert("Erro ao carregar os dados: " + response);
+            }
+        });
+
+    }
+
+    function logoff() {
+        var cliente = sessionStorage.setItem('IdCliente', 'null');
+        loginCliente(cliente);
+    }
+
+    function loginCliente(cliente) {
+        if (cliente == null) {
+            $('#btnLogin').removeClass('esconder');
+            $('#btnLogin').append('<a href="../Login/Login" class="scrollSuave" title="Login" style="color:#A3A3CD;background-color:#40396E">' + 'Login' + '</a>');
+            $('#btnUsuario').addClass('esconder');
+            $('#btnLogoff').addClass('esconder');
+            $('#btnPerfil').addClass('esconder');
+        }
+        else if (cliente != null) {
+            $('#btnLogin').addClass('esconder');
+            $('#btnUsuario').removeClass('esconder');
+            $('#btnLogoff').removeClass('esconder');
+            $('#btnPerfil').removeClass('esconder');
+            $.ajax({
+                type: "GET",
+                url: url + 'Cliente/recuperar?id=' + cliente,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(jsonResult) {
+
+                    if (jsonResult.status) {
+
+                        console.log(jsonResult);
+
+                        var obj = jsonResult.resultado;
+
+                        $('#btnUsuario').append('<a class="scrollSuave" title="Login" style="color:#A3A3CD;background-color:#40396E">' + 'Bem vindo de volta: ' + ' ' + obj.nome + '</a>');
+                        $('#btnPerfil').append('<a href="../Login/HomeLogin" class="scrollSuave" title="Login" style="color:#A3A3CD;background-color:#40396E">' + 'Perfil' + '</a>');
+                        $('#btnLogoff').append('<a href="#" class="scrollSuave" title="Logoff" style="color:white;background-color:#A3A3CD">' + 'Logoff ' + '</a>');
+
+
+                    }
+
+                },
+                failure: function(response) {
+                    alert("Erro ao carregar os dados: " + response);
+                }
+            });
+        } else {
+            $('#btnLogin').append('<a asp-area="" asp-controller="Login" asp-action="Login" class="scrollSuave" title="Login" style="color:#A3A3CD;background-color:#40396E">' + 'Login' + '</a>');
+        }
+
+    }
+
+    $(function() {
+        var cliente = sessionStorage.getItem('IdCliente');
+        $('#btnLogoff').click(function() { logoff(); });
+        listarLancamentos();
+        listarFilme();
+        loginCliente(cliente);
+    });
+
+</script>
